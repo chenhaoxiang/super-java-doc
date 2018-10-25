@@ -396,22 +396,21 @@
 
                 console.log('请求方式:', requestType, '请求数据:', this.testForm);
 
-                Http.ajax(uri, this.testForm, requestType).then((data) = > {
+                Http.ajax(uri, this.testForm, requestType).then(function (data) {
                     self.testRespbody = data;
-            }).
-                catch((e) = > {
+                }).catch(function (e) {
                     console.log(e);
-                window.resp = e;
-                self.$message.error('系统错误:' + e);
-            })
-                ;
+                    window.resp = e;
+                    self.$message.error('系统错误:' + e);
+                });
+
             }
         },
 
         watch: {
             search(val) {
                 this.$refs.apiTree.filter(val);
-            },
+            }
         }
     })
 </script>
