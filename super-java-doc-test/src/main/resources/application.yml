@@ -1,0 +1,4 @@
+doc:
+  enable: true
+  title: 测试文档
+  sourcePath: super-java-doc-test/src/main/java
