@@ -4,7 +4,7 @@
  */
 package com.uifuture.supercore.model;
 
-import com.uifuture.supercore.tag.DocTag;
+import com.uifuture.supercore.tag.AbstractDocTag;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,34 +15,34 @@ import java.util.List;
  */
 public class DocTags {
 
-    private List<DocTag> list;
+    private List<AbstractDocTag> list;
 
     public DocTags() {
     }
 
-    public DocTags(List<DocTag> list) {
+    public DocTags(List<AbstractDocTag> list) {
         this.list = list;
     }
 
-    public DocTag getTag(String name) {
+    public AbstractDocTag getTag(String name) {
         for (int i = 0; i < list.size(); i++) {
-            DocTag docTag = list.get(i);
-            if (docTag.getTagName().equals(name)) {
-                return docTag;
+            AbstractDocTag abstractDocTag = list.get(i);
+            if (abstractDocTag.getTagName().equals(name)) {
+                return abstractDocTag;
             }
         }
         return null;
     }
 
-    public List<DocTag> getTags(String name) {
-        List<DocTag> docTags = new ArrayList<DocTag>();
+    public List<AbstractDocTag> getTags(String name) {
+        List<AbstractDocTag> abstractDocTags = new ArrayList<AbstractDocTag>();
         for (int i = 0; i < list.size(); i++) {
-            DocTag docTag = list.get(i);
-            if (docTag.getTagName().equals(name)) {
-                docTags.add(docTag);
+            AbstractDocTag abstractDocTag = list.get(i);
+            if (abstractDocTag.getTagName().equals(name)) {
+                abstractDocTags.add(abstractDocTag);
             }
         }
-        return docTags;
+        return abstractDocTags;
     }
 
     /**
@@ -50,7 +50,7 @@ public class DocTags {
      *
      * @return property value of list
      */
-    public List<DocTag> getList() {
+    public List<AbstractDocTag> getList() {
         return list;
     }
 
@@ -59,7 +59,7 @@ public class DocTags {
      *
      * @param list value to be assigned to property list
      */
-    public void setList(List<DocTag> list) {
+    public void setList(List<AbstractDocTag> list) {
         this.list = list;
     }
 }

@@ -5,7 +5,7 @@
 package com.uifuture.supercore.resolver.parser.converter.impl;
 
 import com.uifuture.supercore.resolver.parser.converter.JavaParserTagConverter;
-import com.uifuture.supercore.tag.DocTag;
+import com.uifuture.supercore.tag.AbstractDocTag;
 import com.uifuture.supercore.tag.impl.DocTagImpl;
 import com.uifuture.supercore.utils.CommentUtils;
 
@@ -16,7 +16,7 @@ import com.uifuture.supercore.utils.CommentUtils;
 public class DefaultJavaParserTagConverterImpl implements JavaParserTagConverter<String> {
 
     @Override
-    public DocTag converter(String comment) {
+    public AbstractDocTag converter(String comment) {
         String tagType = CommentUtils.getTagType(comment);
         String coment = comment.substring(tagType.length()).trim();
         return new DocTagImpl(tagType, coment);

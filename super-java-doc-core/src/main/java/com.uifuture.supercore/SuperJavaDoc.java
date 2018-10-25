@@ -5,7 +5,7 @@
 package com.uifuture.supercore;
 
 import com.uifuture.supercore.format.Format;
-import com.uifuture.supercore.framework.Framework;
+import com.uifuture.supercore.framework.AbstractFramework;
 import com.uifuture.supercore.model.ApiDoc;
 import com.uifuture.supercore.model.ApiModule;
 import com.uifuture.supercore.resolver.DocTagResolver;
@@ -43,7 +43,7 @@ public class SuperJavaDoc {
     /**
      * api框架类型
      */
-    private Framework framework;
+    private AbstractFramework abstractFramework;
 
     /**
      * 默认的java注释解析器实现
@@ -59,8 +59,8 @@ public class SuperJavaDoc {
      *
      * @param srcPath 源码路径
      */
-    public SuperJavaDoc(String srcPath, Framework framework) {
-        this(Arrays.asList(srcPath), framework);
+    public SuperJavaDoc(String srcPath, AbstractFramework abstractFramework) {
+        this(Arrays.asList(srcPath), abstractFramework);
     }
 
     /**
@@ -68,9 +68,9 @@ public class SuperJavaDoc {
      *
      * @param srcPaths 源码路径,支持多个
      */
-    public SuperJavaDoc(List<String> srcPaths, Framework framework) {
+    public SuperJavaDoc(List<String> srcPaths, AbstractFramework abstractFramework) {
         this.srcPaths = srcPaths;
-        this.framework = framework;
+        this.abstractFramework = abstractFramework;
     }
 
     /**
@@ -84,10 +84,10 @@ public class SuperJavaDoc {
             files.addAll(FileUtils.getAllJavaFiles(new File(srcPath)));
         }
 
-        List<ApiModule> apiModules = this.docTagResolver.resolve(files, framework);
+        List<ApiModule> apiModules = this.docTagResolver.resolve(files, abstractFramework);
 
-        if (framework != null) {
-            apiModules = framework.extend(apiModules);
+        if (abstractFramework != null) {
+            apiModules = abstractFramework.extend(apiModules);
         }
         return new ApiDoc(apiModules);
     }
@@ -139,10 +139,10 @@ public class SuperJavaDoc {
     /**
      * Setter method for property <tt>framework</tt>.
      *
-     * @param framework value to be assigned to property framework
+     * @param abstractFramework value to be assigned to property framework
      */
-    public void setFramework(Framework framework) {
-        this.framework = framework;
+    public void setAbstractFramework(AbstractFramework abstractFramework) {
+        this.abstractFramework = abstractFramework;
     }
 
     /**

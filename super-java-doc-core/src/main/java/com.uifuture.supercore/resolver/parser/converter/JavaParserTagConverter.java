@@ -4,12 +4,12 @@
  */
 package com.uifuture.supercore.resolver.parser.converter;
 
-import com.uifuture.supercore.tag.DocTag;
+import com.uifuture.supercore.tag.AbstractDocTag;
 
 /**
  * @author chenhx
  * @version JavaParserTagConverter.java, v 0.1 2018-09-26 下午 5:23
  */
 public interface JavaParserTagConverter<T extends String> {
-    DocTag converter(T o);
+    AbstractDocTag converter(T o);
 }

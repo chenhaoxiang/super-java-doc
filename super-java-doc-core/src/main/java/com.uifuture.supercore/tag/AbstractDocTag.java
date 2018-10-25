@@ -10,14 +10,14 @@ package com.uifuture.supercore.tag;
  * @author chenhx
  * @version DocTag.java, v 0.1 2018-09-26 下午 4:38
  */
-public abstract class DocTag<T> {
+public abstract class AbstractDocTag<T> {
 
     /**
      * 标签名称
      */
     private String tagName;
 
-    public DocTag(String tagName) {
+    public AbstractDocTag(String tagName) {
         this.tagName = tagName;
     }
 

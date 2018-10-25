@@ -14,7 +14,7 @@ import java.util.List;
  * @author chenhx
  * @version Framework.java, v 0.1 2018-09-26 下午 4:45
  */
-public abstract class Framework {
+public abstract class AbstractFramework {
 
     /**
      * 扩展API数据

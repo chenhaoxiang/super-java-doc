@@ -41,7 +41,7 @@ public class UserController {
     @ResponseBody
     @PostMapping("/login")
     public Map<String, String> login(String username, String password) {
-        Map<String, String> model = new HashMap<>();
+        Map<String, String> model = new HashMap<>(4);
         model.put("code", "0000");
         model.put("msg", "登录成功");
         model.put("username", username);

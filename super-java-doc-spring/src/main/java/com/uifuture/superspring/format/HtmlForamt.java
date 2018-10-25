@@ -29,7 +29,7 @@ public class HtmlForamt implements Format {
             try {
                 String s = IOUtils.toString(in, "utf-8");
 
-                Map<String, Object> model = new HashMap<>();
+                Map<String, Object> model = new HashMap<>(4);
                 model.put("title", StringUtils.defaultString((String) apiDoc.getProperties().get("title"), "接口文档"));
                 model.put("apiModules", apiDoc.getApiModules());
                 //生成json数据

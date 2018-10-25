@@ -4,7 +4,7 @@
  */
 package com.uifuture.supercore.tag.impl;
 
-import com.uifuture.supercore.tag.DocTag;
+import com.uifuture.supercore.tag.AbstractDocTag;
 
 /**
  * 对@Param注释的封装
@@ -12,7 +12,7 @@ import com.uifuture.supercore.tag.DocTag;
  * @author chenhx
  * @version ParamTagImpl.java, v 0.1 2018-09-26 下午 4:39
  */
-public class ParamTagImpl extends DocTag<String> {
+public class ParamTagImpl extends AbstractDocTag<String> {
 
     /**
      * 参数名

@@ -4,7 +4,7 @@
  */
 package com.uifuture.supercore.resolver;
 
-import com.uifuture.supercore.framework.Framework;
+import com.uifuture.supercore.framework.AbstractFramework;
 import com.uifuture.supercore.model.ApiModule;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public interface DocTagResolver {
      * 执行解析
      *
      * @param files     要解析的所有java源代码文件的绝对路径
-     * @param framework api文档所属框架
+     * @param abstractFramework api文档所属框架
      */
-    List<ApiModule> resolve(List<String> files, Framework framework);
+    List<ApiModule> resolve(List<String> files, AbstractFramework abstractFramework);
 }

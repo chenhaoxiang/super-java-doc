@@ -5,7 +5,7 @@
 package com.uifuture.supercore.resolver.parser.converter;
 
 import com.uifuture.supercore.resolver.parser.converter.impl.DefaultJavaParserTagConverterImpl;
-import com.uifuture.supercore.tag.DocTag;
+import com.uifuture.supercore.tag.AbstractDocTag;
 import com.uifuture.supercore.tag.impl.ParamTagImpl;
 import com.uifuture.supercore.utils.Constant;
 
@@ -17,10 +17,10 @@ import com.uifuture.supercore.utils.Constant;
 public class ParamTagConverter extends DefaultJavaParserTagConverterImpl {
 
     @Override
-    public DocTag converter(String comment) {
-        DocTag _docTag = super.converter(comment);
-        String _val = (String) _docTag.getValues();
-        String[] array = _val.split("[ \t]+");
+    public AbstractDocTag converter(String comment) {
+        AbstractDocTag abstractDocTag = super.converter(comment);
+        String values = (String) abstractDocTag.getValues();
+        String[] array = values.split("[ \t]+");
         String paramName = null;
         String paramDesc = "";
         String paramType = "String";
@@ -31,12 +31,14 @@ public class ParamTagConverter extends DefaultJavaParserTagConverterImpl {
         //上面的"必填"两个字也可以换成英文的"Y"
 
         if (array.length > 0) {
-            paramName = array[0];//先将第一个认为是参数名称
+            //先将第一个认为是参数名称
+            paramName = array[0];
             if (array.length > 1) {
 
                 int start = 1;
                 if (array[1].startsWith(":") && array[1].length() > 1) {
-                    paramName = array[1].substring(1);//获取 :username这种类型的参数名称
+                    //获取 :username这种类型的参数名称
+                    paramName = array[1].substring(1);
                     start = 2;
                 }
 
@@ -60,12 +62,13 @@ public class ParamTagConverter extends DefaultJavaParserTagConverterImpl {
                 require = Constant.YES_ZH.equals(requireString) || Constant.YES_EN.equalsIgnoreCase(requireString);
 
                 //如果最后一个不是是否必填的描述,则认为是类型描述
-                if (!require && !(Constant.NOT_EN.equalsIgnoreCase(requireString) || Constant.NOT_ZH.equals(requireString))) {
+                boolean notRequired = !require && !(Constant.NOT_EN.equalsIgnoreCase(requireString) || Constant.NOT_ZH.equals(requireString));
+                if (notRequired) {
                     paramType = requireString;
                 }
             }
         }
 
-        return new ParamTagImpl(_docTag.getTagName(), paramName, paramDesc, paramType, require);
+        return new ParamTagImpl(abstractDocTag.getTagName(), paramName, paramDesc, paramType, require);
     }
 }

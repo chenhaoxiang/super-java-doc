@@ -11,7 +11,7 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import com.uifuture.supercore.framework.Framework;
+import com.uifuture.supercore.framework.AbstractFramework;
 import com.uifuture.supercore.model.ApiAction;
 import com.uifuture.supercore.model.ApiModule;
 import com.uifuture.supercore.model.DocTags;
@@ -19,7 +19,7 @@ import com.uifuture.supercore.resolver.DocTagResolver;
 import com.uifuture.supercore.resolver.IgnoreApi;
 import com.uifuture.supercore.resolver.parser.converter.JavaParserTagConverter;
 import com.uifuture.supercore.resolver.parser.converter.JavaParserTagConverterManager;
-import com.uifuture.supercore.tag.DocTag;
+import com.uifuture.supercore.tag.AbstractDocTag;
 import com.uifuture.supercore.utils.ClassMapperUtils;
 import com.uifuture.supercore.utils.CommentUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -93,7 +93,7 @@ public class JavaParserDocTagResolver implements DocTagResolver {
     }
 
     @Override
-    public List<ApiModule> resolve(List<String> files, Framework framework) {
+    public List<ApiModule> resolve(List<String> files, AbstractFramework abstractFramework) {
         //缓存文件
         for (String file : files) {
             try (FileInputStream in = new FileInputStream(file)) {
@@ -131,7 +131,7 @@ public class JavaParserDocTagResolver implements DocTagResolver {
                 final Class<?> moduleType = Class.forName(cu.getPackageDeclaration().get().getNameAsString() + "." + typeDeclaration.getNameAsString());
 
 
-                if (!framework.support(moduleType)) {
+                if (!abstractFramework.support(moduleType)) {
                     continue;
                 }
 
@@ -164,7 +164,7 @@ public class JavaParserDocTagResolver implements DocTagResolver {
                         }
 
                         List<String> comments = CommentUtils.asCommentList(StringUtils.defaultIfBlank(m.getComment().get().getContent(), ""));
-                        List<DocTag> docTagList = new ArrayList<>(comments.size());
+                        List<AbstractDocTag> abstractDocTagList = new ArrayList<>(comments.size());
 
                         for (int i = 0; i < comments.size(); i++) {
                             String c = comments.get(i);
@@ -173,15 +173,15 @@ public class JavaParserDocTagResolver implements DocTagResolver {
                                 continue;
                             }
                             JavaParserTagConverter converter = JavaParserTagConverterManager.getConverter(tagType);
-                            DocTag docTag = converter.converter(c);
-                            if (docTag != null) {
-                                docTagList.add(docTag);
+                            AbstractDocTag abstractDocTag = converter.converter(c);
+                            if (abstractDocTag != null) {
+                                abstractDocTagList.add(abstractDocTag);
                             } else {
                                 log.warn("识别不了:{}", c);
                             }
                         }
 
-                        DocTags docTags = new DocTags(docTagList);
+                        DocTags docTags = new DocTags(abstractDocTagList);
                         ApiAction apiAction = new ApiAction();
                         if (m.getComment().isPresent()) {
                             apiAction.setComment(CommentUtils.parseCommentText(m.getComment().get().getContent()));

@@ -4,7 +4,7 @@
  */
 package com.uifuture.supercore.tag.impl;
 
-import com.uifuture.supercore.tag.DocTag;
+import com.uifuture.supercore.tag.AbstractDocTag;
 import com.uifuture.supercore.utils.Constant;
 import org.apache.commons.lang3.StringUtils;
 
@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author chenhx
  * @version RespTagImpl.java, v 0.1 2018-09-26 下午 4:40
  */
-public class RespTagImpl extends DocTag<String> {
+public class RespTagImpl extends AbstractDocTag<String> {
 
     /**
      * 参数名

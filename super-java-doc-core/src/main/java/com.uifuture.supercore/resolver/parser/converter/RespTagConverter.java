@@ -4,7 +4,7 @@
  */
 package com.uifuture.supercore.resolver.parser.converter;
 
-import com.uifuture.supercore.tag.DocTag;
+import com.uifuture.supercore.tag.AbstractDocTag;
 import com.uifuture.supercore.tag.impl.ParamTagImpl;
 import com.uifuture.supercore.tag.impl.RespTagImpl;
 
@@ -16,7 +16,7 @@ import com.uifuture.supercore.tag.impl.RespTagImpl;
 public class RespTagConverter extends ParamTagConverter {
 
     @Override
-    public DocTag converter(String comment) {
+    public AbstractDocTag converter(String comment) {
         ParamTagImpl paramTag = (ParamTagImpl) super.converter(comment);
         RespTagImpl respTag = new RespTagImpl(paramTag.getTagName(), paramTag.getParamName(), paramTag.getParamDesc(),
                 paramTag.getParamType(), paramTag.isRequire());

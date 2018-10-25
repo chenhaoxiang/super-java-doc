@@ -11,7 +11,7 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.uifuture.supercore.model.FieldInfo;
 import com.uifuture.supercore.model.ObjectInfo;
 import com.uifuture.supercore.resolver.parser.converter.impl.DefaultJavaParserTagConverterImpl;
-import com.uifuture.supercore.tag.DocTag;
+import com.uifuture.supercore.tag.AbstractDocTag;
 import com.uifuture.supercore.tag.impl.SeeTagImpl;
 import com.uifuture.supercore.utils.ClassMapperUtils;
 import com.uifuture.supercore.utils.CommentUtils;
@@ -39,10 +39,10 @@ public class SeeTagConverter extends DefaultJavaParserTagConverterImpl {
     private Logger log = LoggerFactory.getLogger(SeeTagConverter.class);
 
     @Override
-    public DocTag converter(String comment) {
-        DocTag _docTag = super.converter(comment);
+    public AbstractDocTag converter(String comment) {
+        AbstractDocTag abstractDocTag = super.converter(comment);
 
-        String path = ClassMapperUtils.getPath((String) _docTag.getValues());
+        String path = ClassMapperUtils.getPath((String) abstractDocTag.getValues());
         if (StringUtils.isBlank(path)) {
             return null;
         }
@@ -54,7 +54,8 @@ public class SeeTagConverter extends DefaultJavaParserTagConverterImpl {
             if (cu.getTypes().size() <= 0) {
                 return null;
             }
-            returnClassz = Class.forName(cu.getPackageDeclaration().get().getNameAsString() + "." + cu.getTypes().get(0).getNameAsString());
+            returnClassz = Class.forName(cu.getPackageDeclaration().get().getNameAsString()
+                    + "." + cu.getTypes().get(0).getNameAsString());
 
         } catch (Exception e) {
             log.warn("读取java原文件失败:{}", path, e.getMessage());
@@ -70,12 +71,12 @@ public class SeeTagConverter extends DefaultJavaParserTagConverterImpl {
         objectInfo.setType(returnClassz);
         objectInfo.setFieldInfos(fields);
         objectInfo.setComment(text);
-        return new SeeTagImpl(_docTag.getTagName(), objectInfo);
+        return new SeeTagImpl(abstractDocTag.getTagName(), objectInfo);
     }
 
     private Map<String, String> analysisFieldComments(Class<?> classz) {
 
-        final Map<String, String> commentMap = new HashMap();
+        final Map<String, String> commentMap = new HashMap(16);
 
         List<Class> classes = new LinkedList<>();
 
@@ -133,7 +134,7 @@ public class SeeTagConverter extends DefaultJavaParserTagConverterImpl {
 
         for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
             //排除掉class属性
-            if (propertyDescriptor.getName().equals("class")) {
+            if ("class".equals(propertyDescriptor.getName())) {
                 continue;
             }
 

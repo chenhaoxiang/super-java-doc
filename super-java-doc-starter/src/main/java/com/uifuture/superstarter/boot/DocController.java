@@ -10,7 +10,6 @@ import com.uifuture.supercore.utils.JsonUtils;
 import com.uifuture.superspring.framework.SpringWebFramework;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,15 +20,16 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 /**
  * @author chenhx
  * @version docController.java, v 0.1 2018-09-26 下午 6:11
  */
 @RequestMapping("superJavaDoc")
 public class DocController {
-
-    private static ApiDoc apiDoc;
-    private Logger LOGGER = LoggerFactory.getLogger(DocController.class);
+    private static final Logger LOGGER = getLogger(DocController.class);
+    private static ApiDoc apiDoc; 
     @Autowired
     private DocProperties docProperties;
 
@@ -56,7 +56,7 @@ public class DocController {
             Thread thread = new Thread(() -> {
                 try {
                     apiDoc = superJavaDoc.resolve();
-                    HashMap<String, Object> properties = new HashMap<>();
+                    HashMap<String, Object> properties = new HashMap<>(4);
                     properties.put("version", docProperties.getVersion());
                     properties.put("title", docProperties.getTitle());
                     apiDoc.setProperties(properties);

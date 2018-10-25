@@ -90,7 +90,7 @@ public class SpringWebFramework extends Framework {
     private void addSprit(String[] urls) {
         for (int i = 0; i < urls.length; i++) {
             if (urls[i].length() > 0) {
-                if (!(urls[i].charAt(0) == '/')) {
+                if (urls[i].charAt(0) != '/') {
                     urls[i] = "/" + urls[i];
                 }
             } else {
