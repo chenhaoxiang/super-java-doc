@@ -469,6 +469,7 @@
     }
 
     #test {
+        display: inline-table;
         right: 0px;
         padding: 20px 20px;
         position: absolute;
@@ -488,7 +489,7 @@
     }
 
     .test-on {
-        width: 800px;
+        /*width: 800px;*/
         cursor: auto;
     }
 

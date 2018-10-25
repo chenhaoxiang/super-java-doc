@@ -35,7 +35,7 @@
     <div id="main" v-if="currentApiAction != null" @click="hideTest">
         <h2 class="action-title">{{currentApiAction.title}}</h2>
         <p class="comment">描述: {{currentApiAction.comment}}</p>
-        <p class="uri" v-if="currentApiAction.methods.length > 0">只支持:
+        <p class="uri" v-if="currentApiAction.methods.length > 0">仅支持:
             <span v-for="m in currentApiAction.methods">{{m}} </span>
         </p>
         <p class="uri" v-for="uri in currentApiAction.uris">接口地址: {{(currentApiModule.uris[0] ? currentApiModule.uris[0]
@@ -97,7 +97,7 @@
                 </el-form-item>
 
                 <el-form-item>
-                    <el-button type="primary" @click="onTest">测试</el-button>
+                    <el-button type="primary" @click="onTest">请求</el-button>
                     <el-button @click="resetTestForm">重置</el-button>
                 </el-form-item>
             </el-form>
@@ -473,6 +473,7 @@
     }
 
     #test {
+        display: inline-table;
         right: 0px;
         padding: 20px 20px;
         position: absolute;
@@ -492,7 +493,7 @@
     }
 
     .test-on {
-        width: 800px;
+        /*width: 800px;*/
         cursor: auto;
     }
 
@@ -501,7 +502,7 @@
     }
 
     .test-on .test-main {
-        display: auto;
+        display: block;
     }
 
     .test-form {
