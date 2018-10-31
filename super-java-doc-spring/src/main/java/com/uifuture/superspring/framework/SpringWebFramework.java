@@ -4,11 +4,11 @@
  */
 package com.uifuture.superspring.framework;
 
-import com.uifuture.supercore.framework.Framework;
+import com.uifuture.supercore.framework.AbstractFramework;
 import com.uifuture.supercore.model.ApiAction;
 import com.uifuture.supercore.model.ApiModule;
 import com.uifuture.supercore.model.ObjectInfo;
-import com.uifuture.supercore.tag.DocTag;
+import com.uifuture.supercore.tag.AbstractDocTag;
 import com.uifuture.supercore.tag.impl.ParamTagImpl;
 import com.uifuture.supercore.tag.impl.RespTagImpl;
 import com.uifuture.supercore.tag.impl.SeeTagImpl;
@@ -33,7 +33,7 @@ import java.util.List;
  * @version SpringWebFramework.java, v 0.1 2018-09-26 下午 5:31
  */
 
-public class SpringWebFramework extends Framework {
+public class SpringWebFramework extends AbstractFramework {
 
     @Override
     public boolean support(Class<?> classz) {
@@ -198,7 +198,7 @@ public class SpringWebFramework extends Framework {
     }
 
     protected String getReturnDesc(SpringApiAction saa) {
-        DocTag tag = saa.getDocTags().getTag("@return");
+        AbstractDocTag tag = saa.getDocTags().getTag("@return");
         return tag != null ? tag.getValues().toString() : null;
     }
 
@@ -223,9 +223,9 @@ public class SpringWebFramework extends Framework {
     }
 
     protected List<ParamInfo> getRespParam(SpringApiAction saa) {
-        List<DocTag> tags = saa.getDocTags().getTags("@resp");
+        List<AbstractDocTag> tags = saa.getDocTags().getTags("@resp");
         List<ParamInfo> list = new ArrayList(tags.size());
-        for (DocTag tag : tags) {
+        for (AbstractDocTag tag : tags) {
             RespTagImpl respTag = (RespTagImpl) tag;
             ParamInfo paramInfo = new ParamInfo();
             paramInfo.setParamName(respTag.getParamName());
@@ -238,7 +238,7 @@ public class SpringWebFramework extends Framework {
     }
 
     protected String getRespbody(SpringApiAction saa) {
-        DocTag respbodyTag = saa.getDocTags().getTag("@respbody");
+        AbstractDocTag respbodyTag = saa.getDocTags().getTag("@respbody");
         if (respbodyTag != null) {
             return (String) respbodyTag.getValues();
         }
@@ -246,7 +246,7 @@ public class SpringWebFramework extends Framework {
     }
 
     protected String getTitile(SpringApiAction saa) {
-        DocTag titleTag = saa.getDocTags().getTag("@title");
+        AbstractDocTag titleTag = saa.getDocTags().getTag("@title");
         if (titleTag != null) {
             return (String) titleTag.getValues();
         } else {
