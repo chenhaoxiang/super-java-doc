@@ -39,7 +39,7 @@ public class ApiAction {
     /**
      * 方法上标注的注解
      */
-    private DocTags docTags;
+    private com.uifuture.supercore.model.DocTags docTags;
 
     /**
      * Getter method for property <tt>title</tt>.
@@ -118,7 +118,7 @@ public class ApiAction {
      *
      * @return property value of docTags
      */
-    public DocTags getDocTags() {
+    public com.uifuture.supercore.model.DocTags getDocTags() {
         return docTags;
     }
 
@@ -127,7 +127,7 @@ public class ApiAction {
      *
      * @param docTags value to be assigned to property docTags
      */
-    public void setDocTags(DocTags docTags) {
+    public void setDocTags(com.uifuture.supercore.model.DocTags docTags) {
         this.docTags = docTags;
     }
 }

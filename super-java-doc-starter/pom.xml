@@ -7,7 +7,7 @@
     <groupId>com.uifuture</groupId>
     <version>1.0.0</version>
     <modelVersion>4.0.0</modelVersion>
-    <description>super-java-doc,基于Java doc注释，自动构建文档</description>
+    <description>super-java-doc,基于Java doc注释，自动构建文档,项目地址:https://github.com/chenhaoxiang/super-java-doc</description>
 
     <dependencies>
         <dependency>

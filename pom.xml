@@ -11,9 +11,11 @@
     <modules>
         <module>super-java-doc-core</module>
         <module>super-java-doc-spring</module>
-        <module>super-java-doc-test</module>
         <module>super-java-doc-starter</module>
     </modules>
+    <name>super-java-doc</name>
+    <url>https://github.com/chenhaoxiang/super-java-doc</url>
+    <description>super-java-doc,基于Java doc注释，自动构建文档,项目地址:https://github.com/chenhaoxiang/super-java-doc</description>
 
     <dependencyManagement>
         <dependencies>
@@ -68,6 +70,79 @@
         </dependency>
 
     </dependencies>
+
+
+    <!-- 在工程的pom.xml文件中，引入Sonatype官方的一个通用配置oss-parent，这样做的好处是很多pom.xml的发布配置不需要自己配置了 -->
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <tag>master</tag>
+        <url>git@github.com:chenhaoxiang/super-java-doc.git</url>
+        <connection>scm:git:git@github.com:chenhaoxiang/super-java-doc.git</connection>
+        <developerConnection>scm:git:git@github.com:chenhaoxiang/super-java-doc.git</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>chenhaoxiang</name>
+            <email>uifuture@uifuture.com</email>
+            <organization>uifuture</organization>
+            <organizationUrl>http://chenhaoxiang.cn</organizationUrl>
+        </developer>
+    </developers>
+
+    <profiles>
+        <profile>
+            <id>sonatype-oss-release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <!-- 使用1.5版本 -->
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.7</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                                <configuration>
+                                    <additionalparam>-Xdoclint:none</additionalparam>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <build>
         <resources>

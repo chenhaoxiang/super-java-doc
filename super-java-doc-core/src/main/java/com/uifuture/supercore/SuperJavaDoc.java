@@ -50,14 +50,14 @@ public class SuperJavaDoc {
      * <p>
      * 备注:基于sun doc的解析方式已经废弃,若需要请参考v1.0之前的版本
      *
-     * @see com.uifuture.supercore.resolver.parser.JavaParserDocTagResolver
+     * @see JavaParserDocTagResolver
      */
     private DocTagResolver docTagResolver = new JavaParserDocTagResolver();
 
     /**
-     * 构建doc对象
-     *
+     *  构建doc对象
      * @param srcPath 源码路径
+     * @param abstractFramework
      */
     public SuperJavaDoc(String srcPath, AbstractFramework abstractFramework) {
         this(Arrays.asList(srcPath), abstractFramework);
@@ -65,8 +65,8 @@ public class SuperJavaDoc {
 
     /**
      * 构建SuperJavaDoc对象
-     *
      * @param srcPaths 源码路径,支持多个
+     * @param abstractFramework
      */
     public SuperJavaDoc(List<String> srcPaths, AbstractFramework abstractFramework) {
         this.srcPaths = srcPaths;

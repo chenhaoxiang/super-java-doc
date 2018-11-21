@@ -11,7 +11,6 @@ package com.uifuture.supercore.utils;
 public class ClassUtils {
     /**
      * 将基本类型的转为class类型
-     *
      * @param className
      * @return
      */

@@ -22,13 +22,13 @@ public class ApiDoc {
     /**
      * 所有API模块
      */
-    private List<ApiModule> apiModules;
+    private List<com.uifuture.supercore.model.ApiModule> apiModules;
 
-    public ApiDoc(List<ApiModule> apiModules) {
+    public ApiDoc(List<com.uifuture.supercore.model.ApiModule> apiModules) {
         this.apiModules = apiModules;
     }
 
-    public ApiDoc(Map<String, Object> properties, List<ApiModule> apiModules) {
+    public ApiDoc(Map<String, Object> properties, List<com.uifuture.supercore.model.ApiModule> apiModules) {
         this.properties = properties;
         this.apiModules = apiModules;
     }
@@ -56,7 +56,7 @@ public class ApiDoc {
      *
      * @return property value of apiModules
      */
-    public List<ApiModule> getApiModules() {
+    public List<com.uifuture.supercore.model.ApiModule> getApiModules() {
         return apiModules;
     }
 
@@ -65,7 +65,7 @@ public class ApiDoc {
      *
      * @param apiModules value to be assigned to property apiModules
      */
-    public void setApiModules(List<ApiModule> apiModules) {
+    public void setApiModules(List<com.uifuture.supercore.model.ApiModule> apiModules) {
         this.apiModules = apiModules;
     }
 }

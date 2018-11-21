@@ -21,9 +21,9 @@ public interface DocTagResolver {
 
     /**
      * 执行解析
-     *
-     * @param files     要解析的所有java源代码文件的绝对路径
+     * @param files 要解析的所有java源代码文件的绝对路径
      * @param abstractFramework api文档所属框架
+     * @return
      */
     List<ApiModule> resolve(List<String> files, AbstractFramework abstractFramework);
 }
