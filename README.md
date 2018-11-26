@@ -184,8 +184,7 @@ doc.enable=false
 ```
 
 
-本项目参考自 https://gitee.com/treeleaf/xDoc 项目。  
-在此感谢xDoc的开发者。    
-本项目修复了xDoc其中几个Bugs。  
-将持续维护。  
 欢迎有志之士一起开发。提Issues。  
+
+
+参考项目：https://gitee.com/treeleaf/xDoc  
